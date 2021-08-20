@@ -47,3 +47,13 @@ Start _only_ once section 1 and 2 functionality is complete. The following endpo
 - Threading
 
 If you can implement message queues/ real-time queries then go ahead and make a feature that’s not listed above. You can skip section 2 and 3 of the tests if you have an idea for these.
+
+### node -v v14.16.1
+
+### "express": "~4.16.1",
+
+### Entry: app.js
+
+### PORT 3000
+
+### Start Back-end npm start
