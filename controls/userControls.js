@@ -12,15 +12,6 @@ exports.signup = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   }
 
-  //   const salt = await bcrypt.genSaltSync(10);
-  // const password = await req.body.password;
-
-  // const salt = await bcrypt.genSalt(10);
-  // const hashedPassword = await bcrypt.hash(password, salt);
-
-  // const salt = await bcrypt.genSaltSync(10);
-  // const hashedPassword = await req.body.password;
-
   const hashedPassword = await bcrypt.hash(password, 20);
 
   const user = await User.create({
@@ -41,13 +32,28 @@ exports.signup = asyncHandler(async (req, res) => {
   }
 });
 
-exports.signin = (req, res) => {
-  res.send('done');
-};
+exports.signin = async (req, res) => {
+  const { email, password } = req.body;
 
-// exports.signup = (req, res) => {
-//   res.send('done');
-// };
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(400);
+    req.session.error = 'User does not exsist';
+    throw new Error('User does not exsist');
+  }
+
+  const match = await bcrypt.compare(password, user.password);
+
+  if (!match) {
+    res.status(400);
+    req.session.error = 'User credentials Invalid';
+    throw new Error('User credentials Invalid');
+  }
+
+  req.session.username = user.username;
+  res.status(200);
+};
 
 exports.test = (req, res) => {
   res.send('done');
