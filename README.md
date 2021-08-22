@@ -54,6 +54,6 @@ If you can implement message queues/ real-time queries then go ahead and make a 
 
 ### Entry: app.js
 
-### PORT 3000
+### PORT: 5000
 
-### Start Back-end npm start
+### Start backend: npm start
