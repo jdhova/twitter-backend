@@ -20,7 +20,7 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.7",
+    "mongoose": "^5.13.8",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.12",
     "session": "^0.1.0",

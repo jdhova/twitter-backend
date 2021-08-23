@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { newConvo } = require('../controls/conversationsControl');
+const {
+  addConvo,
+  getConvo,
+  getChatConvo,
+} = require('../controls/conversationsControl');
 
-router.post('/conversations', newConvo);
+router.post('/conversations', addConvo);
+router.get('/conversations/userId', getConvo);
+router.get('/conversations/find/:firstUserId/:secondUserId', getChatConvo);
 
 module.exports = router;

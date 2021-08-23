@@ -12,6 +12,4 @@ router.delete('/deletetweet:id', deletetweet);
 router.put('/updatetweet/:id', updatetweet);
 router.put('/liketweet/:id/like', liketweet);
 
-// remeber to add in app.js
-
 module.exports = router;

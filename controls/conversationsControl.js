@@ -1,8 +1,7 @@
 const Conversation = require('../models/conversationsModel');
-// const router = require('express').Router();
-//const Conversation = require("../models/Conversation");
+const router = require('express').Router();
 
-//new conv
+//new Conversation
 
 exports.newConvo = async (req, res) => {
   const newConversation = new Conversation({
@@ -17,15 +16,26 @@ exports.newConvo = async (req, res) => {
   }
 };
 
-//get conv of a user
+// getting user Conversation
+exports.getConvo = async (req, res) => {
+  try {
+    const conversation = await Conversation.find({
+      members: { $in: [req.params.userId] },
+    });
+    res.status(200).json(conversation);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
 
-// router.get("/:userId", async (req, res) => {
-//   try {
-//     const conversation = await Conversation.find({
-//       members: { $in: [req.params.userId] },
-//     });
-//     res.status(200).json(conversation);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+// getting Chat Conversation
+exports.getChatConvo = async (req, res) => {
+  try {
+    const conversation = await Conversation.findOne({
+      members: { $all: [req.params.firstUserId, req.params.secondUserId] },
+    });
+    res.status(200).json(conversation);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
