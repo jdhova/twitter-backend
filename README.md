@@ -56,4 +56,6 @@ If you can implement message queues/ real-time queries then go ahead and make a 
 
 ### PORT: 5000
 
+### npm install
+
 ### Start backend: npm start

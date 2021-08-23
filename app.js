@@ -1,13 +1,22 @@
 //import express from 'express';
 const express = require('express');
-const router = express();
 const mongoose = require('mongoose');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+// const http = require('http');
+//const socketio = require('socket.io')(server);
+
+const router = express();
+// const server = http.createServer(router);
+// const io = socketio(server);
+
 require('dotenv').config();
 const userRoutes = require('./routes/users');
+const conversationsRoutes = require('./routes/conversations');
+const messagesRoutes = require('./routes/messages');
+const tweetRoutes = require('./routes/tweets');
 
 // Middleware Routes
 
@@ -49,6 +58,11 @@ router.use(express.static(__dirname));
 
 // Middleware Routes
 router.use('/api', userRoutes);
+router.use('/api', conversationsRoutes);
+router.use('/api', messagesRoutes);
+router.use('/api', tweetRoutes);
+
+// socket io API
 
 const port = process.env.PORT || 5000;
 
